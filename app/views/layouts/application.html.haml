@@ -6,12 +6,20 @@
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   = csrf_meta_tags
 %body
+  %nav.navbar.navbar-default.navbar-fixed-top
+    .container
+      = link_to "Wiki", root_path, class: "navbar-brand"
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to "New Article", new_article_path
   %p.notice= notice
   %p.alert= alert
 
-  = yield
-
-  %ul
-    %li= link_to "All Articles", root_path
-    - Category.all.each do |category|
-      %li= link_to category.name, articles_path(category: category.name)
+  .container
+    .row
+      .col-md-8
+        = yield
+      .col-md-4
+        %ul
+          %li= link_to "All Articles", root_path
+          - Category.all.each do |category|
+            %li= link_to category.name, articles_path(category: category.name)
