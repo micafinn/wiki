@@ -5,4 +5,4 @@
     = article.created_at.strftime('%b %d, %Y ')
   %p= truncate(article.content, length: 200)
 
-= will_paginate @articles 
+= will_paginate @articles, previous_label: "Older", next_label: "Newer"
